@@ -2,10 +2,16 @@
 
 ## Versions
 **1.0.2 -** Carleton Fork
+
 **1.0 -** Initial release
 
 ## Summary
 An Alma Barcode Lookup Addon that uses a barcode to perform an Alma API item lookup and imports the data returned into Ares, Aeon, and ILLiad.
+
+This version is a fork by Carleton University Library. 
+
+Changes in the fork:
+* PageCount (Pages), if not found in the item data, is pulled from the Bib's 300 MARC field.
 
 ## Settings
 

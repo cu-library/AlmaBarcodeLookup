@@ -1,6 +1,7 @@
 # Alma Barcode Lookup Addon
 
 ## Versions
+**1.0.2 -** Carleton Fork
 **1.0 -** Initial release
 
 ## Summary

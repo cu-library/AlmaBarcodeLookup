@@ -59,7 +59,7 @@ table.insert(DataMapping.FieldMapping["Ares"], {
 });
 table.insert(DataMapping.FieldMapping["Ares"], {
     MappingName = "Pages",
-    ImportField = "Item.PageCount",
+    ImportField = "Item.PagesEntireWork",
     ObjectType = "item",
     ObjectMapping = "pages"
 });

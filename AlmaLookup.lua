@@ -69,7 +69,7 @@ local function DoLookup( itemBarcode )
     
     local pagesValueDestination={};
     pagesValueDestination[1] = "Item";
-    pagesValueDestination[2] = "PageCount";
+    pagesValueDestination[2] = "PagesEntireWork";
     
     table.insert( lookupResults,{
                   valueDestination = pagesValueDestination;

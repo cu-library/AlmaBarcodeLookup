@@ -1,7 +1,7 @@
 # Alma Barcode Lookup Addon
 
 ## Versions
-**1.0.2 -** Carleton Fork
+**1.0.3 -** Carleton Fork
 
 **1.0 -** Initial release
 
@@ -12,6 +12,10 @@ This version is a fork by Carleton University Library.
 
 Changes in the fork:
 * PageCount (Pages), if not found in the item data, is pulled from the Bib's 300 MARC field.
+* The publication date is imported. 
+* The shelf location is imported.
+* The author dates (birth, death) are added if available. 
+
 
 ## Settings
 

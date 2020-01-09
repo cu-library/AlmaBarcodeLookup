@@ -57,6 +57,18 @@ table.insert(DataMapping.FieldMapping["Ares"], {
     ObjectType = "item",
     ObjectMapping = "pages"
 });
+table.insert(DataMapping.FieldMapping["Ares"], {
+    MappingName = "PublicationYear",
+    ImportField = "Item.JournalYear",
+    ObjectType = "item",
+    ObjectMapping = "date_of_publication"
+});
+table.insert(DataMapping.FieldMapping["Ares"], {
+    MappingName = "ShelfLocation",
+    ImportField = "Item.ShelfLocation",
+    ObjectType = "item",
+    ObjectMapping = "base_status"
+});
 
 -- ILLiad Field Mapping
 DataMapping.FieldMapping["ILLiad"] = {};

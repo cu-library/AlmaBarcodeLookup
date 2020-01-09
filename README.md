@@ -1,7 +1,7 @@
 # Alma Barcode Lookup Addon
 
 ## Versions
-**1.0.3 -** Carleton Fork
+**1.0.4 -** Carleton Fork
 
 **1.0 -** Initial release
 
@@ -35,71 +35,6 @@ Changes in the fork:
 The buttons for the Alma Barcode Lookup Addon are located in the *"Barcode Lookup"* ribbon in the top left of the requests.
 
 >**Import By Barcode:** Currently, the only button in the Alma Barcode Lookup Addon. When clicked, it will use the provided barcode to make an Item Alma API call using the item's barcode.
-
-## Data Mappings
-Below are the default data mappings from the API response to Ares, Aeon, and ILLiad and the default location of the barcodes for each product. These data mappings can be changed in the `DataMapping.lua` file.
-
-### Default Barcode Fields
-| Product DataMapping                       | Location              |
-|-------------------------------------------|-----------------------|
-| DataMapping.BarcodeFieldMapping["Ares"]   | Item.ItemBarcode      |
-| DataMapping.BarcodeFieldMapping["ILLiad"] | Transaction.ItemNumber|
-| DataMapping.BarcodeFieldMapping["Aeon"]   | Transaction.ItemNumber|
-
-#### Columns
->**Mapping Name:** Used to identify the mapping. The `Fields to Import` setting lists the *Mapping Names* for the addon to import.
->
->**Import Field:** The Ares, Aeon, or ILLiad field the API response item maps to. The first value is the table the field maps to and the second value is the desired column in the specified table.
->
->**Object Type:** Object type is the name of the response type from the API response.
->
->**Object Mapping:** The XML node name of the data you wish to import.
-
-### Ares
-| Mapping Name |  Import Field   | Object Type |               Object Mapping                |
-| ------------ | --------------- | ----------- | ------------------------------------------- |
-| CallNumber   | Item.Callnumber | item        | call_number                                 |
-| ISXN         | Item.ISXN       | item        | issn                                        |
-| ISXN         | Item.ISXN       | item        | isbn                                        |
-| Title        | Item.Title      | item        | title              |
-| Author       | Item.Author     | item        | author             |
-| Edition      | Item.Edition    | item        | complete_edition            |
-| Place        | Item.PubPlace   | item        | place_of_publication |
-| Pages        | Item.PageCount  | item        | pages         |
-| Publisher    | Item.Publisher  | item        | publisher_const          |
-
-### ILLiad
->***Note:*** Because ILLiad supports multiple request types, separate mappings to both *Loan* and *Article* can be provided to the appropriate fields.
-
-| Mapping Name | Request Type |          Import Field          | Object Type |        Object Mapping         |
-| ------------ | ------------ | ------------------------------ | ----------- | ----------------------------- |
-| Author       | Loan         | Transaction.LoanAuthor         | item        | author                        |
-| Author       | Article      | Transaction.PhotoItemAuthor    | item        | author                        |
-| ISXN         | Both         | Transaction.ISSN               | item        | issn                          |
-| ISXN         | Both         | Transaction.ISSN               | item        | isbn                          |
-| Edition      | Loan         | Transaction.LoanEdition        | item        | complete_edition              |
-| Edition      | Article      | Transaction.PhotoItemEdition   | item        | complete_edition              |
-| Pages        | Both         | Transaction.Pages              | item        | pages                         |
-| Place        | Loan         | Transaction.LoanPlace          | item        | place_of_publication          |
-| Place        | Article      | Transaction.PhotoItemPlace     | item        | place_of_publication          |
-| Publisher    | Loan         | Transaction.LoanPublisher      | item        | publisher_const               |
-| Publisher    | Article      | Transaction.PhotoItemPublisher | item        | publisher_const               |
-| Title        | Loan         | Transaction.LoanTitle          | item        | title         |
-| Title        | Article      | Transaction.PhotoJournalTitle  | item        | title |
-| CallNumber   | Both         | Transaction.CallNumber         | item        | call_number                   |
-
-### Aeon
-| Mapping Name |       Import Field        | Object Type |    Object Mapping    |
-| ------------ | ------------------------- | ----------- | -------------------- |
-| Title        | Transaction.ItemTitle     | item        | title                |
-| Author       | Transaction.ItemAuthor    | item        | author               |
-| ISXN         | Transaction.ItemISxN      | item        | issn                 |
-| ISXN         | Transaction.ItemISxN      | item        | isbn                 |
-| Publisher    | Transaction.ItemPublisher | item        | publisher_const      |
-| Pages        | Transaction.ItemPages     | item        | pages                |
-| CallNumber   | Transaction.CallNumber    | item        | call_number          |
-| Place        | Transaction.ItemPlace     | item        | place_of_publication |
-| Edition      | Transaction.ItemEdition   | item        | complete_edition     |
 
 ## FAQ
 

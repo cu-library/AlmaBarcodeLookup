@@ -1,7 +1,7 @@
 # Alma Barcode Lookup Addon
 
 ## Versions
-**1.0.4 -** Carleton Fork
+**1.0.5 -** Carleton Fork
 
 **1.0 -** Initial release
 
@@ -15,6 +15,7 @@ Changes in the fork:
 * The publication date is imported. 
 * The shelf location is imported.
 * The author dates (birth, death) are added if available. 
+* The shelf location can be updated using a second button.
 
 
 ## Settings

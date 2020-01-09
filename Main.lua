@@ -39,8 +39,9 @@ function Init()
   log:Debug("Created Ribbon Page");
 
   ribbonPage:CreateButton("Import by Barcode", GetClientImage(DataMapping.ClientImage[product]), "ImportItem", "Options");
+  ribbonPage:CreateButton("Update Shelf Location by Barcode", GetClientImage(DataMapping.ClientImage[product]), "UpdateShelfLocation", "Options");
 
-  log:Debug("Created Button");
+  log:Debug("Created Buttons");
 
   -- Find the field to perform lookup with
   if settings.FieldToPerformLookupWith:lower() == "{default}" then
@@ -77,17 +78,29 @@ function ImportItem()
   end
 end
 
+function UpdateShelfLocation()
+  log:Debug("Updating Shelf Location...");
+  local lookupResult = DoLookup();
+  log:Debug("DoLookup Complete");
+
+  if(lookupResult ~= nil) then
+    for _, result in ipairs(lookupResult) do
+      if(result.valueDestination[2] == "ShelfLocation") then
+        log:InfoFormat("Importing {0} into {1}.{2}", result.valueToImport, result.valueDestination[1], result.valueDestination[2]);
+        SetFieldValue(result.valueDestination[1], result.valueDestination[2], result.valueToImport);
+      end
+    end
+  else
+    interfaceMngr:ShowMessage("No item found.", "Item Not found");
+  end
+end
+
 -- Returns a lookUpResult that contains a valueDestination array and the value to import
 -- The valueDestination array has the table in the first position and the column in the second
 function DoLookup()
   -- Set the mouse cursor to busy.
   types["System.Windows.Forms.Cursor"].Current = types["System.Windows.Forms.Cursors"].WaitCursor;
-  local itemBarcode = nil;
-  local succeeded, result = pcall(function() return GetFieldValue(settings.FieldToPerformLookupWith[1], settings.FieldToPerformLookupWith[2]) end)
-
-  if succeeded then
-    itemBarcode = result;
-  end
+  local itemBarcode = GetFieldValue(settings.FieldToPerformLookupWith[1], settings.FieldToPerformLookupWith[2]);
 
   if itemBarcode == nil  or itemBarcode == "" then
     log:Warn("Barcode is nil");

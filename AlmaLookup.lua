@@ -48,9 +48,9 @@ local function process300APages(threehundredsuba)
 end
 
 local function DoLookup( itemBarcode )
-    local itemLookupSucceeded, itemResponse = pcall(AlmaApi.RetrieveItemByBarcode, itemBarcode);
-
-    if not itemLookupSucceeded then
+    local itemResponse = AlmaApi.RetrieveItemByBarcode(itemBarcode);
+    
+    if (itemResponse == nil) then
         log:Error("Error performing lookup");
         return nil;
     end
@@ -67,8 +67,8 @@ local function DoLookup( itemBarcode )
         return nil;
     end
 
-    local bibLookupSucceeded, bibResponse = pcall(AlmaApi.RetrieveBibs, mmsIDToImport);
-    if not bibLookupSucceeded then
+    local bibResponse = AlmaApi.RetrieveBibs(mmsIDToImport);
+    if (bibResponse == nil) then
         log:Error("Error performing MMSID (bib) lookup");
         return nil;
     end
@@ -106,6 +106,7 @@ function PrepareLookupResults(itemResponse, bibResponse)
                 if (destination[1] == "Item" and destination[2] == "JournalYear") then
                     toImport = toImport:gsub("^[c,%[]", "");
                     toImport = toImport:gsub("%.$", "");
+                    toImport = toImport:gsub("%]$", "");
                 end
 
                 -- Add more information to the shelf location

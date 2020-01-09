@@ -52,22 +52,10 @@ table.insert(DataMapping.FieldMapping["Ares"], {
     ObjectMapping = "complete_edition"
 });
 table.insert(DataMapping.FieldMapping["Ares"], {
-    MappingName = "Place",
-    ImportField = "Item.PubPlace",
-    ObjectType = "item",
-    ObjectMapping = "place_of_publication"
-});
-table.insert(DataMapping.FieldMapping["Ares"], {
     MappingName = "Pages",
     ImportField = "Item.PagesEntireWork",
     ObjectType = "item",
     ObjectMapping = "pages"
-});
-table.insert(DataMapping.FieldMapping["Ares"], {
-    MappingName = "Publisher",
-    ImportField = "Item.Publisher",
-    ObjectType = "item",
-    ObjectMapping = "publisher_const"
 });
 
 -- ILLiad Field Mapping

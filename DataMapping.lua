@@ -69,6 +69,12 @@ table.insert(DataMapping.FieldMapping["Ares"], {
     ObjectType = "item",
     ObjectMapping = "base_status"
 });
+table.insert(DataMapping.FieldMapping["Ares"], {
+    MappingName = "Editor",
+    ImportField = "Item.Editor",
+    ObjectType = "item",
+    ObjectMapping = "author"
+});
 
 -- ILLiad Field Mapping
 DataMapping.FieldMapping["ILLiad"] = {};

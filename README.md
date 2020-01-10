@@ -1,7 +1,7 @@
 # Alma Barcode Lookup Addon
 
 ## Versions
-**1.0.5 -** Carleton Fork
+**1.0.6 -** Carleton Fork
 
 **1.0 -** Initial release
 
@@ -16,6 +16,7 @@ Changes in the fork:
 * The shelf location is imported.
 * The author dates (birth, death) are added if available. 
 * The shelf location can be updated using a second button.
+* The editor is added from the Bib's 700 MARC field. 
 
 
 ## Settings

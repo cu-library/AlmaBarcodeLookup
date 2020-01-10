@@ -111,7 +111,18 @@ function PrepareLookupResults(itemResponse, bibResponse)
 
                 -- Add more information to the shelf location
                 if (destination[1] == "Item" and destination[2] == "ShelfLocation") then
-                    local location = itemResponse:GetElementsByTagName("location"):Item(0);
+                    toImport = "";
+                    
+                    -- Is the item in a temporary location?
+                    local intemplocationnode = itemResponse:GetElementsByTagName("in_temp_location"):Item(0);
+                    local locationtag = "location";
+                    if(intemplocationnode ~= nil) then
+                        if(intemplocationnode.InnerText == "true") then
+                            locationtag = "temp_location";
+                        end
+                    end
+
+                    local location = itemResponse:GetElementsByTagName(locationtag):Item(0);
                     if(location ~= nil) then
                         toImport = location:GetAttribute("desc");
                     end
@@ -125,7 +136,6 @@ function PrepareLookupResults(itemResponse, bibResponse)
                 -- Fix author
                 if (destination[1] == "Item" and destination[2] == "Author" and toImport ~= "") then
                     toImport = toImport:gsub("%,$", "");
-                    toImport = toImport:gsub("%.$", "");
                     local onehundredsubd = bibResponse:SelectSingleNode("//bib[1]/record/datafield[@tag='100']/subfield[@code='d']");
                     -- If we selected a tag, take its InnerText
                     if(onehundredsubd ~= nil) then
@@ -137,9 +147,19 @@ function PrepareLookupResults(itemResponse, bibResponse)
                 if (destination[1] == "Item" and destination[2] == "Title" and toImport ~= "") then
                     toImport = toImport:gsub(" *%/ *$", "");
                     toImport = toImport:gsub("&amp;", "&");
-                    toImport = toImport:gsub(" %.$", ".");
                     toImport = toImport:gsub("not%-for%- profit", "not-for-profit");
                     toImport = toImport:gsub("not%- for%-profit", "not-for-profit");
+                end
+                
+                -- Fix the editor
+                if (destination[1] == "Item" and destination[2] == "Editor") then
+                    -- Throw away whatever the dummy data mapping is.
+                    toImport = "";
+                    local sevenhundredsuba = bibResponse:SelectSingleNode("//bib[1]/record/datafield[@tag='700']/subfield[@code='a']");
+                    -- If we selected a tag, take its InnerText
+                    if(sevenhundredsuba ~= nil) then
+                        toImport = sevenhundredsuba.InnerText;
+                    end
                 end
 
                 log:DebugFormat("To Import = {0}", toImport);

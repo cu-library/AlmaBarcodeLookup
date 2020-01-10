@@ -146,7 +146,9 @@ function PrepareLookupResults(itemResponse, bibResponse)
                 -- Fix the title
                 if (destination[1] == "Item" and destination[2] == "Title" and toImport ~= "") then
                     toImport = toImport:gsub(" *%/ *$", "");
+                    toImport = toImport:gsub("([^%.])$", "%1.");
                     toImport = toImport:gsub("&amp;", "&");
+                    toImport = toImport:gsub(" +%.$", ".");
                     toImport = toImport:gsub("not%-for%- profit", "not-for-profit");
                     toImport = toImport:gsub("not%- for%-profit", "not-for-profit");
                 end
@@ -160,6 +162,13 @@ function PrepareLookupResults(itemResponse, bibResponse)
                     if(sevenhundredsuba ~= nil) then
                         toImport = sevenhundredsuba.InnerText;
                     end
+                end
+                
+                -- Fix the ISXN
+                if (destination[1] == "Item" and destination[2] == "ISXN" and toImport ~= "") then
+                    toImport = toImport:gsub("%(hbk%.%)$", "");
+                    toImport = toImport:gsub("%(pbk%.%)$", "");
+                    toImport = toImport:gsub(" +$", "");
                 end
 
                 log:DebugFormat("To Import = {0}", toImport);

@@ -1,7 +1,7 @@
 # Alma Barcode Lookup Addon
 
 ## Versions
-**1.0.6 -** Carleton Fork
+**1.0.7 -** Carleton Fork
 
 **1.0 -** Initial release
 
@@ -17,7 +17,7 @@ Changes in the fork:
 * The author dates (birth, death) are added if available. 
 * The shelf location can be updated using a second button.
 * The editor is added from the Bib's 700 MARC field. 
-
+* Remove format note from isxn (pbk or hbk). 
 
 ## Settings
 
@@ -36,7 +36,8 @@ Changes in the fork:
 ## Buttons
 The buttons for the Alma Barcode Lookup Addon are located in the *"Barcode Lookup"* ribbon in the top left of the requests.
 
->**Import By Barcode:** Currently, the only button in the Alma Barcode Lookup Addon. When clicked, it will use the provided barcode to make an Item Alma API call using the item's barcode.
+>**Import By Barcode:** When clicked, it will use the provided barcode to make an Item Alma API call using the item's barcode.
+>**Update Shelf Location by Barcode:** When clicked, it will use the provided barcode to make an Item Alma API call using the item's barcode, then update only the shelf location.
 
 ## FAQ
 
